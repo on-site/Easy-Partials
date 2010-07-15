@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "easy_partials"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Easy Partials}
+    gem.description = %Q{An easier way to call partials}
     gem.email = "abukhait@gmail.com"
     gem.homepage = "http://github.com/on-site/Easy-Partials"
     gem.authors = ["Samer Abukhait"]

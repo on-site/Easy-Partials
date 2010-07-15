@@ -10,11 +10,12 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Samer Abukhait"]
   s.date = %q{2010-07-15}
-  s.description = %q{Helper to call partials in an easier way}
+  s.description = %q{An easier way to call partials}
   s.email = %q{abukhait@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+     "README.rdoc",
+     "TODO"
   ]
   s.files = [
     ".document",
@@ -22,7 +23,9 @@ Gem::Specification.new do |s|
      "LICENSE",
      "README.rdoc",
      "Rakefile",
+     "TODO",
      "VERSION",
+     "easy_partials.gemspec",
      "lib/easy_partials.rb",
      "spec/easy_partials_spec.rb",
      "spec/spec.opts",

@@ -1,2 +1,0 @@
-For more information on easypartials, see
-"http://noahgibbs.github.com/easypartials".
