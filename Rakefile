@@ -8,11 +8,10 @@ begin
     gem.summary = %Q{TODO: one-line summary of your gem}
     gem.description = %Q{TODO: longer description of your gem}
     gem.email = "abukhait@gmail.com"
-    gem.homepage = "http://github.com/abukhait/easy_partials"
+    gem.homepage = "http://github.com/on-site/Easy-Partials"
     gem.authors = ["Samer Abukhait"]
     gem.rubyforge_project = "easy_partials"
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
   Jeweler::RubyforgeTasks.new do |rubyforge|

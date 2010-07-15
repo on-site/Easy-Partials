@@ -1,6 +1,49 @@
 = easy_partials
 
-Description goes here.
+EasyPartials are a way to make partials in Rails even easier!  This is
+an expansion of a blog post by Mike Stone at
+"http://smellsblue.blogspot.com/2009/11/easy-partials-in-rails.html".
+
+== FEATURES:
+
+* Allows easy partial invocation syntax, with simpler local variable passing
+* Allows configurable shared directories for partials
+
+== SYNOPSIS:
+
+<% _my_partial :var => "123" do %>
+  <p>
+    Some block content.
+  </p>
+<% end %>
+
+The above would render a partial (as with <%= render :partial =>
+"my_partial" %>), with the local variable "var" set to "123", and the
+local variable "body" set to the paragraph "some block content", HTML
+tags included.
+
+Note that you need to use <% rather than <%=.
+
+For a shared partial, use a line like the following in environment.rb
+or in a file under initializers:
+
+  Easypartials.shared_directories = ["mydir1", "mydir2"]
+
+This will set up app/views/mydir1 and app/views/mydir2 as the
+locations to look for partials when a directory isn't explicitly
+given.
+
+This plugin will first check the directory of the view being rendered,
+then check the shared directories in the order given.
+
+== REQUIREMENTS:
+
+You'll need a recent-ish version of Rails.  You'll also need hoe and
+newgem, but you get them automatically when you install easypartials.
+
+== INSTALL:
+
+sudo gem install easy_partials
 
 == Note on Patches/Pull Requests
  
@@ -11,7 +54,3 @@ Description goes here.
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
-
-== Copyright
-
-Copyright (c) 2010 Samer Abukhait. See LICENSE for details.
