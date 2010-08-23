@@ -162,28 +162,5 @@ module ApplicationHelper
 
 end
 
-class ApplicationController
+require 'easy_partials/controller_additions'
 
-  # Add additional partial locations for the auto finding of partials
-  # (via the <% _partial_name %> mechanism).  This can be a single
-  # partial directory, or a list of them.  Each value should be a
-  # directory relative to the views directory, and should NOT contain
-  # a trailing "/".  The order the directories are added is the order
-  # they will be checked, however the local path will still be checked
-  # first (the global shared directory will be checked after all these
-  # additional directories).
-  #
-  # For example:
-  #
-  #   additional_partials "shared/forms"
-  #   additional_partials "shared/accounting", "shared_accounting"
-  def self.additional_partials(*partials)
-    before_filter { |controller|
-      values = controller.instance_variable_get :@additional_partials
-      values = values || []
-      values.push *partials
-      controller.instance_variable_set :@additional_partials, values
-    }
-  end
-
-end
