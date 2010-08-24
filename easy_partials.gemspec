@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{easy_partials}
-  s.version = "0.2.2"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Samer Abukhait"]
@@ -28,6 +28,8 @@ Gem::Specification.new do |s|
      "easy_partials.gemspec",
      "lib/easy_partials.rb",
      "lib/easy_partials/controller_additions.rb",
+     "lib/easy_partials/helper_additions.rb",
+     "lib/easy_partials/object_additions.rb",
      "spec/easy_partials_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"

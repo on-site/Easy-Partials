@@ -2,33 +2,22 @@ module EasyPartials
 
   module HelperAdditions
 
-    METHOD_REGEXP = /^_/
-    alias_method :original_respond_to?, :respond_to?
-
     def respond_to?(method_name, inc_priv = false)
       return true if method_name =~ METHOD_REGEXP
-
-      original_respond_to?(method_name, inc_priv)
+      super
     end
-
-    alias_method :original_method_missing, :method_missing
 
     def method_missing(method_name, *args, &block)
       method_str = method_name.to_s
-
-      if method_str.sub! METHOD_REGEXP, ''
-        locations = [method_str]
-        locations.push *additional_partials(method_str)
-        new_method = partial_method locations, *args, &block
-        meta_def_with_block method_name, &new_method
-      else
-        original_method_missing method_name, *args, &block
-      end
+      return super unless method_str.sub! METHOD_REGEXP, ''
+      locations = [method_str]
+      locations.push *additional_partials(method_str)
+      new_method = partial_method locations, *args, &block
+      meta_def_with_block method_name, &new_method
     end
 
     def additional_partials(partial_name)
-      @additional_partials ||= EasyPartials.shared_directories
-      @additional_partials.map { |location| "#{location}/#{partial_name}" }
+      (@additional_partials || EasyPartials.shared_directories).map { |location| "#{location}/#{partial_name}" }
     end
 
     # Utility method to create and invoke a Proc which will concat the
@@ -107,12 +96,14 @@ module EasyPartials
       rendered = invoke_partial partial, *args, &block
       concat rendered
     end
+
   end
 
 end
 
-if defined? ActionHelper
-  ActionHelper.module_eval do
+if defined? ApplicationHelper
+  ApplicationHelper.module_eval do
     include EasyPartials::HelperAdditions
   end
 end
+

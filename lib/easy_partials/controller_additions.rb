@@ -17,13 +17,10 @@ module EasyPartials
       #
       #   additional_partials "shared/forms"
       #   additional_partials "shared/accounting", "shared_accounting"
-      def additional_partials(*partials)
-        before_filter { |controller|
-          values = controller.instance_variable_get :@additional_partials
-          values = values || []
-          values.push *partials
-          controller.instance_variable_set :@additional_partials, values
-        }
+      def additional_partials(*locations)
+        before_filter do |controller|
+          controller.instance_variable_set :@additional_partials, (locations + EasyPartials.shared_directories).flatten.uniq
+        end
       end
 
     end
