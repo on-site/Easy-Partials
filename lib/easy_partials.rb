@@ -14,4 +14,3 @@ end
 require "easy_partials/object_additions"
 require "easy_partials/helper_additions"
 require 'easy_partials/controller_additions'
-

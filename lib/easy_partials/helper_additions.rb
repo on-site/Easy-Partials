@@ -101,9 +101,6 @@ module EasyPartials
 
 end
 
-if defined? ApplicationHelper
-  ApplicationHelper.module_eval do
-    include EasyPartials::HelperAdditions
-  end
+module ApplicationHelper
+  include EasyPartials::HelperAdditions
 end
-
