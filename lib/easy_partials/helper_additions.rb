@@ -2,18 +2,18 @@ module EasyPartials
 
   module HelperAdditions
 
-    def respond_to?(method_name, inc_priv = false)
-      return true if method_name =~ METHOD_REGEXP
-      super
-    end
-
     def method_missing(method_name, *args, &block)
       method_str = method_name.to_s
       return super unless method_str.sub! METHOD_REGEXP, ''
       locations = [method_str]
       locations.push *additional_partials(method_str)
-      new_method = partial_method locations, *args, &block
-      meta_def_with_block method_name, &new_method
+
+      begin
+        new_method = partial_method locations, *args, &block
+        meta_def_with_block method_name, &new_method
+      rescue ActionView::MissingTemplate
+        super
+      end
     end
 
     def additional_partials(partial_name)
