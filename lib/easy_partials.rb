@@ -1,5 +1,4 @@
 module EasyPartials
-
   METHOD_REGEXP = /^_/
 
   def self.shared_directories

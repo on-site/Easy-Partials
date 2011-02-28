@@ -5,11 +5,10 @@
 
 Gem::Specification.new do |s|
   s.name = %q{easy_partials}
-  s.version = "0.3.4"
+  s.version = "0.3.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Samer Abukhait"]
-  s.date = %q{2011-02-27}
   s.description = %q{An easier way to call partials}
   s.email = %q{abukhait@gmail.com}
   s.extra_rdoc_files = [
@@ -24,7 +23,6 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "TODO",
-     "VERSION",
      "easy_partials.gemspec",
      "lib/easy_partials.rb",
      "lib/easy_partials/controller_additions.rb",
@@ -58,4 +56,3 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
   end
 end
-

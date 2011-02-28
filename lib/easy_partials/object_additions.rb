@@ -40,5 +40,3 @@ class Object
     "
   end
 end
-
-

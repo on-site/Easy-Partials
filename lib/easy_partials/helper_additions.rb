@@ -1,7 +1,5 @@
 module EasyPartials
-
   module HelperAdditions
-
     def method_missing(method_name, *args, &block)
       method_str = method_name.to_s
       return super unless method_str.sub! METHOD_REGEXP, ''
@@ -29,6 +27,7 @@ module EasyPartials
     def partial_method(locations, *args, &block)
       raise "No possible locations!" if locations.empty?
       partial_name = locations.delete_at 0
+
       new_method = lambda do |block, *args|
         if params[:format] == "pdf"
           invoke_partial partial_name, *args, &block
@@ -36,6 +35,7 @@ module EasyPartials
           concat_partial partial_name, *args, &block
         end
       end
+
       begin
         new_method.call block, *args
       rescue ActionView::MissingTemplate
@@ -68,7 +68,6 @@ module EasyPartials
       else
         render :partial => partial.to_s, :locals => locals
       end
-
     end
 
     # Used to create nice templated "tags" while keeping the html out of
@@ -96,9 +95,7 @@ module EasyPartials
       rendered = invoke_partial partial, *args, &block
       concat rendered
     end
-
   end
-
 end
 
 module ApplicationHelper

@@ -8,6 +8,7 @@ an expansion of a blog post by Mike Stone at
 
 * Allows easy partial invocation syntax, with simpler local variable passing
 * Allows configurable shared directories for partials
+* Rails 3 compatible
 
 == SYNOPSIS:
 
@@ -46,7 +47,7 @@ newgem, but you get them automatically when you install easypartials.
 sudo gem install easy_partials
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a

@@ -1,9 +1,7 @@
 module EasyPartials
-
   # This module is automatically included into all controllers.
   module ControllerAdditions
     module ClassMethods
-
       # Add additional partial locations for the auto finding of partials
       # (via the <% _partial_name %> mechanism).  This can be a single
       # partial directory, or a list of them.  Each value should be a
@@ -22,14 +20,12 @@ module EasyPartials
           controller.instance_variable_set :@additional_partials, (locations + EasyPartials.shared_directories).flatten.uniq
         end
       end
-
     end
 
     def self.included(base)
       base.extend ClassMethods
     end
   end
-
 end
 
 if defined? ActionController
