@@ -58,6 +58,8 @@ module EasyPartials
         locals.merge! :args => args
       end
 
+      locals[:options] = locals.dup unless locals.has_key?(:options)
+
       locals.merge! :body => capture(&block) if block
       locals[:body] = nil unless locals[:body]
 
