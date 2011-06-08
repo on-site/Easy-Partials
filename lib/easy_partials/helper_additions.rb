@@ -7,7 +7,8 @@ module EasyPartials
       locations.push *additional_partials(method_str)
 
       begin
-        new_method = partial_method locations, *args, &block
+        locals = partial_args *args, &block
+        new_method = partial_method locations, locals
         meta_def_with_block method_name, &new_method
       rescue ActionView::MissingTemplate
         super
@@ -24,7 +25,7 @@ module EasyPartials
     # method_missing will have to be invoked each time the partial is
     # invoked).  The locations parameter is modified in the process.
     # This is used by method_missing.
-    def partial_method(locations, *args, &block)
+    def partial_method(locations, locals)
       raise "No possible locations!" if locations.empty?
       partial_name = locations.delete_at 0
 
@@ -37,19 +38,19 @@ module EasyPartials
       end
 
       begin
-        new_method.call block, *args
+        new_method.call nil, locals
       rescue ActionView::MissingTemplate
         if locations.empty?
           raise
         else
-          new_method = partial_method locations, *args, &block
+          new_method = partial_method locations, locals
         end
       end
 
       new_method
     end
 
-    def invoke_partial(partial, *args, &block)
+    def partial_args(*args, &block)
       locals = {}
 
       if args.length == 1 && args[0].is_a?(Hash)
@@ -58,10 +59,14 @@ module EasyPartials
         locals.merge! :args => args
       end
 
-      locals[:options] = locals.dup unless locals.has_key?(:options)
-
       locals.merge! :body => capture(&block) if block
       locals[:body] = nil unless locals[:body]
+      locals
+    end
+
+    def invoke_partial(partial, *args, &block)
+      locals = partial_args *args, &block
+      locals[:options] = locals.dup unless locals.has_key?(:options)
 
       if locals.has_key? :collection
         return "" if locals[:collection].blank?
